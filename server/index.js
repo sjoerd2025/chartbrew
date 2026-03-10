@@ -17,6 +17,11 @@ const helmet = require("helmet");
 const fs = require("fs");
 const busboy = require("connect-busboy");
 
+// Initialize telemetry first before any other imports
+const { initTelemetry } = require("./modules/telemetry");
+
+initTelemetry();
+
 const settings = process.env.NODE_ENV === "production" ? require("./settings") : require("./settings-dev");
 const routes = require("./api");
 const appsRoutes = require("./apps");
@@ -88,7 +93,7 @@ app.use(parseQueryParams);
 
 // Load the routes
 _.each(routes, (controller, route) => {
-  app.use(route, controller(app));
+  app.use(`/${route}`, controller(app));
 });
 
 // Load the apps routes

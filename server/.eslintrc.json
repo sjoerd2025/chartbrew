@@ -60,6 +60,17 @@
         "no-unused-vars": "off",
         "import/no-unresolved": "off"
       }
+    },
+    {
+      "files": [
+        "modules/genkit/**/*.js",
+        "api/GenkitRoute.js",
+        "modules/telemetry.js"
+      ],
+      "rules": {
+        "import/no-unresolved": "off",
+        "no-console": "off"
+      }
     }
   ]
 }
